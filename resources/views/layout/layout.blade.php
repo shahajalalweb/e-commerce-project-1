@@ -25,7 +25,7 @@
                         <span class="ml-2 font-bold text-lg">Dashboard</span>
                     </a>
                     <a href="#"
-                        class="flex items-center p-3 text-sm font-medium text-gray-600 bg-gray-100 rounded-md hover:text-blue-600 hover:bg-gray-200">
+                        class="flex items-center {{ request()->routeIs('products') ? 'text-blue-600 bg-gray-200' : 'text-gray-600' }} p-3 text-sm font-medium  bg-gray-100 rounded-md hover:text-blue-600 hover:bg-gray-200">
                         <span class="material-icons">store</span>
                         <span class="ml-2 font-bold text-lg">Products</span>
                     </a>

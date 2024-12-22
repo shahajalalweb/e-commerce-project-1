@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex-1 p-6">
         <!-- Topbar -->
-        <div class="flex items-center justify-between bg-gray-100 p-4 rounded-md shadow-sm">
+        <div class="flex items-center justify-between bg-white p-4 rounded-md shadow-md">
             <!-- Dashboard Title -->
             <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
 
@@ -11,19 +11,19 @@
             <div class="flex items-center space-x-4">
                 <!-- Search Bar -->
                 <div
-                    class="flex items-center bg-white px-4 py-2 rounded-full shadow-lg w-80 ring-1 ring-gray-200 transition duration-200 hover:ring-blue-400 focus-within:ring-blue-500">
+                    class="flex items-center bg-gray-50 px-4 py-2 rounded-full shadow w-80 ring-1 ring-gray-200 transition duration-200 hover:ring-blue-400 focus-within:ring-blue-500">
                     <span class="material-icons text-gray-400 text-2xl">search</span>
                     <input type="text" placeholder="Search for items..."
                         class="flex-grow ml-3 bg-transparent outline-none text-gray-700 text-sm placeholder-gray-400" />
                 </div>
-
                 <!-- Profile Section -->
                 <div
-                    class="flex items-center bg-blue-500 text-white p-2 rounded-full shadow-lg cursor-pointer hover:bg-blue-600 transition duration-200">
+                    class="flex items-center bg-blue-600 text-white p-2 rounded-full shadow-md cursor-pointer hover:bg-blue-700 transition duration-200">
                     <span class="material-icons text-3xl">person</span>
                 </div>
             </div>
         </div>
+
 
 
         <!-- Main Area -->
