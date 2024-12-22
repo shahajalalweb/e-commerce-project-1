@@ -19,12 +19,12 @@
                 <h2 class="text-xl font-bold text-blue-600 ml-2">Spike Admin</h2>
                 <nav class="mt-8 space-y-2">
                     <!-- Dashboard -->
-                    <a href="#"
+                    <a href="{{ route('dashboard') }}"
                         class="flex items-center {{ request()->routeIs('dashboard') ? 'text-blue-600 bg-gray-200' : 'text-gray-600' }} p-3 text-sm font-medium  bg-gray-100 rounded-md hover:text-blue-600 hover:bg-gray-200">
                         <span class="material-icons">dashboard</span>
                         <span class="ml-2 font-bold text-lg">Dashboard</span>
                     </a>
-                    <a href="#"
+                    <a href="{{ route('products') }}"
                         class="flex items-center {{ request()->routeIs('products') ? 'text-blue-600 bg-gray-200' : 'text-gray-600' }} p-3 text-sm font-medium  bg-gray-100 rounded-md hover:text-blue-600 hover:bg-gray-200">
                         <span class="material-icons">store</span>
                         <span class="ml-2 font-bold text-lg">Products</span>
