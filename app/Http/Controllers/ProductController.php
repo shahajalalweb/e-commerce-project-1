@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+
 
 class ProductController extends Controller
 {
@@ -12,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('pages.products.products');
+        $products = Product::with('category')->get();
+        return view('pages.products.products', compact('products'));
     }
 
     /**
@@ -20,7 +23,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('pages.products.addProducts');
+        $categories = Category::all();
+        return view('pages.products.addProducts', compact('categories'));
     }
 
     /**
@@ -32,9 +36,9 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'discount' => 'nullable|numeric',
-            'category' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
             'stock' => 'required|integer',
-            'rating' => 'nullable|numeric|min:1|max:5',
+            'rating' => 'nullable|integer|min:1|max:5',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'status' => 'required|in:active,inactive',
             'description' => 'nullable|string',
@@ -46,8 +50,9 @@ class ProductController extends Controller
 
         Product::create($validatedData);
 
-        return redirect()->route('products.index')->with('success', 'Product added successfully');
+        return redirect()->route('add-product')->with('success', 'Product added successfully!');
     }
+
 
     /**
      * Display the specified resource.

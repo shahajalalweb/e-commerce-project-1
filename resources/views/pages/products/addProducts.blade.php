@@ -42,122 +42,93 @@
                     </div>
                 @endif
 
-                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 shadow-lg rounded-lg">
+                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"
+                    class="bg-white p-6 shadow-lg rounded-lg">
                     @csrf
 
                     <h2 class="text-xl font-bold text-gray-800 mb-4">Add New Product</h2>
                     <div class="grid gap-6 md:grid-cols-2">
-                        <!-- Product Name -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="productName">
-                                Product Name
-                            </label>
-                            <input type="text" id="productName" name="productName"
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 shadow focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter product name">
+                            <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Product
+                                Name</label>
+                            <input type="text" id="name" name="name"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="Enter product name">
                         </div>
 
-                        <!-- Price -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="price">
-                                Price ($)
-                            </label>
+                            <label for="price" class="block text-sm font-semibold text-gray-700 mb-2">Price ($)</label>
                             <input type="number" id="price" name="price"
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 shadow focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter price">
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="Enter price">
                         </div>
 
-                        <!-- Discount -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="discount">
-                                Discount ($)
-                            </label>
+                            <label for="discount" class="block text-sm font-semibold text-gray-700 mb-2">Discount
+                                ($)</label>
                             <input type="number" id="discount" name="discount"
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 shadow focus:ring-blue-500 focus:border-blue-500"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2"
                                 placeholder="Enter discount amount">
                         </div>
 
-                        <!-- Category -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="category">
-                                Category
-                            </label>
-                            <select id="category" name="category"
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 shadow focus:ring-blue-500 focus:border-blue-500">
-                                <option>Select category</option>
-                                <option>Electronics</option>
-                                <option>Fashion</option>
-                                <option>Home & Living</option>
+                            <label for="category" class="block text-sm font-semibold text-gray-700 mb-2">Category</label>
+                            <select id="category_id" name="category_id"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                                <option value="">Select category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
-                        <!-- Stock Quantity -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="stock">
-                                Stock Quantity
-                            </label>
+                            <label for="stock" class="block text-sm font-semibold text-gray-700 mb-2">Stock
+                                Quantity</label>
                             <input type="number" id="stock" name="stock"
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 shadow focus:ring-blue-500 focus:border-blue-500"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2"
                                 placeholder="Enter stock quantity">
                         </div>
 
-                        <!-- Rating -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="rating">
-                                Rating (1-5)
-                            </label>
-                            <input type="number" id="rating" name="rating" min="1" max="5" step="0.1"
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 shadow focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter product rating">
+                            <label for="rating" class="block text-sm font-semibold text-gray-700 mb-2">Rating
+                                (1-5)</label>
+                            <input type="number" id="rating" name="rating"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2"
+                                placeholder="Enter product rating" min="1" max="5">
                         </div>
 
-                        <!-- Image -->
                         <div class="col-span-2">
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="image">
-                                Product Image
-                            </label>
+                            <label for="image" class="block text-sm font-semibold text-gray-700 mb-2">Product
+                                Image</label>
                             <input type="file" id="image" name="image"
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 shadow focus:ring-blue-500 focus:border-blue-500">
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2">
                         </div>
 
-                        <!-- Status -->
                         <div class="col-span-2">
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="status">
-                                Status
-                            </label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Status</label>
                             <div class="flex items-center gap-4">
-                                <label class="flex items-center space-x-2">
-                                    <input type="radio" name="status" value="active"
-                                        class="text-blue-500 focus:ring-blue-500">
-                                    <span>Active</span>
+                                <label>
+                                    <input type="radio" name="status" value="active">
+                                    Active
                                 </label>
-                                <label class="flex items-center space-x-2">
-                                    <input type="radio" name="status" value="inactive"
-                                        class="text-blue-500 focus:ring-blue-500">
-                                    <span>Inactive</span>
+                                <label>
+                                    <input type="radio" name="status" value="inactive">
+                                    Inactive
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Description -->
                     <div class="mt-4">
-                        <label class="block text-sm font-semibold text-gray-700 mb-2" for="description">
-                            Product Description
-                        </label>
-                        <textarea id="description" name="description" rows="4"
-                            class="w-full border border-gray-300 rounded-lg px-4 py-2 shadow focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Enter a detailed product description"></textarea>
+                        <label for="description" class="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+                        <textarea id="description" name="description" class="w-full border border-gray-300 rounded-lg px-4 py-2" rows="4"
+                            placeholder="Enter product description"></textarea>
                     </div>
 
-                    <!-- Submit Button -->
                     <div class="mt-6 text-right">
-                        <button type="submit"
-                            class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg hover:shadow-xl transition duration-200">
-                            Add Product
-                        </button>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Add Product</button>
                     </div>
                 </form>
+
 
             </div>
         </div>

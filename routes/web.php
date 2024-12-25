@@ -13,7 +13,7 @@ Route::post('/categories', [CategoryController::class, 'store'])->name('categori
 Route::get('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
 Route::get('/products/add', [ProductController::class, 'create'])->name('add-product');
-Route::post('/products/store', [CategoryController::class, 'store'])->name('products.store');
+Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products/view', [ProductController::class, 'index'])->name('view-products');
 
 

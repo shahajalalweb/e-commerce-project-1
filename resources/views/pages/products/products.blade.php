@@ -26,41 +26,47 @@
 
 
         <!-- Admin Panel Design -->
-<div class="mt-8">
+        <div class="mt-8">
 
-    <!-- Product Table -->
-    <div class="mt-8 p-6 bg-white rounded shadow">
-        <h3 class="text-lg font-bold mb-4">Product List</h3>
-        <div class="overflow-x-auto">
-            <table class="w-full border-collapse border border-gray-200 text-sm">
-                <thead>
-                    <tr class="bg-gray-100 text-left">
-                        <th class="border border-gray-300 px-4 py-2">#</th>
-                        <th class="border border-gray-300 px-4 py-2">Product Name</th>
-                        <th class="border border-gray-300 px-4 py-2">Category</th>
-                        <th class="border border-gray-300 px-4 py-2">Price ($)</th>
-                        <th class="border border-gray-300 px-4 py-2">Stock</th>
-                        <th class="border border-gray-300 px-4 py-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border border-gray-300 px-4 py-2">1</td>
-                        <td class="border border-gray-300 px-4 py-2">Sample Product</td>
-                        <td class="border border-gray-300 px-4 py-2">Electronics</td>
-                        <td class="border border-gray-300 px-4 py-2">$100</td>
-                        <td class="border border-gray-300 px-4 py-2">50</td>
-                        <td class="border border-gray-300 px-4 py-2">
-                            <button class="px-2 py-1 text-white bg-green-500 rounded hover:bg-green-600">Edit</button>
-                            <button class="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600">Delete</button>
-                        </td>
-                    </tr>
-                    <!-- More rows can be added dynamically -->
-                </tbody>
-            </table>
+            <!-- Product Table -->
+            <div class="mt-8 p-6 bg-white rounded shadow">
+                <h3 class="text-lg font-bold mb-4">Product List</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse border border-gray-200 text-sm">
+                        <thead>
+                            <tr class="bg-gray-100 text-left">
+                                <th class="border border-gray-300 px-4 py-2">#</th>
+                                <th class="border border-gray-300 px-4 py-2">Product Name</th>
+                                <th class="border border-gray-300 px-4 py-2">Category</th>
+                                <th class="border border-gray-300 px-4 py-2">Price ($)</th>
+                                <th class="border border-gray-300 px-4 py-2">Stock</th>
+                                <th class="border border-gray-300 px-4 py-2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td class="border border-gray-300 px-4 py-2">{{ $loop->iteration }}</td>
+                                    <td class="border border-gray-300 px-4 py-2">{{ $product->name }}</td>
+                                    <td class="border border-gray-300 px-4 py-2">
+                                        {{ $product->category->name ?? 'No Category' }}</td>
+
+                                    <td class="border border-gray-300 px-4 py-2">${{ $product->price }}</td>
+                                    <td class="border border-gray-300 px-4 py-2">{{ $product->stock }}</td>
+                                    <td class="border border-gray-300 px-4 py-2">
+                                        <button
+                                            class="px-2 py-1 text-white bg-green-500 rounded hover:bg-green-600">Edit</button>
+                                        <button
+                                            class="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 
 
