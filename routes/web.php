@@ -1,14 +1,19 @@
 <?php
-
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('pages.dashboard.dashboard');
-})->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/products', function () {
-    return view('pages.products.products');
-})->name('products');
+// category routing
+Route::get('/products/category', [CategoryController::class, 'index'])->name('category');
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
+
+Route::get('/products/add', [ProductController::class, 'create'])->name('add-product');
+Route::post('/products/store', [CategoryController::class, 'store'])->name('products.store');
+Route::get('/products/view', [ProductController::class, 'index'])->name('view-products');
 
 

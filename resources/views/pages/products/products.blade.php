@@ -27,37 +27,6 @@
 
         <!-- Admin Panel Design -->
 <div class="mt-8">
-    <!-- Product Input Form -->
-    <div class="p-6 bg-white rounded shadow">
-        <h3 class="text-lg font-bold mb-4">Add New Product</h3>
-        <form>
-            <div class="grid gap-4 md:grid-cols-2">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2" for="productName">Product Name</label>
-                    <input type="text" id="productName" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter product name">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2" for="price">Price ($)</label>
-                    <input type="number" id="price" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter product price">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2" for="category">Category</label>
-                    <input type="text" id="category" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter product category">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2" for="stock">Stock Quantity</label>
-                    <input type="number" id="stock" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter stock quantity">
-                </div>
-            </div>
-            <div class="mt-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2" for="description">Description</label>
-                <textarea id="description" rows="3" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter product description"></textarea>
-            </div>
-            <div class="mt-6">
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600">Add Product</button>
-            </div>
-        </form>
-    </div>
 
     <!-- Product Table -->
     <div class="mt-8 p-6 bg-white rounded shadow">
