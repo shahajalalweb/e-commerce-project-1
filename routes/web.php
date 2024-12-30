@@ -2,6 +2,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,4 +18,5 @@ Route::post('/products/store', [ProductController::class, 'store'])->name('produ
 Route::get('/products/view', [ProductController::class, 'index'])->name('view-products');
 Route::get('/products/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
 
-
+// user controller
+Route::get('/user', [HomeController::class, 'index'])->name('user.home');
