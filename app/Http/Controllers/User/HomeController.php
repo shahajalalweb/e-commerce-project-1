@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\menu;
 
 class HomeController extends Controller
 {
@@ -13,8 +15,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $products = Product::with('category')->get();
-        return view('user.home', compact('products'));
+        $menus = menu::all();
+        return view('user.home', compact('categories','products', 'menus' ));
     }
 
     /**

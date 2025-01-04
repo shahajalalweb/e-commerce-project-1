@@ -29,6 +29,14 @@
                         <span class="ml-2 font-bold text-lg">Dashboard</span>
                     </a>
 
+                    <!-- MenuBar -->
+                    <a href="{{ route('menu') }}"
+                        class="flex items-center {{ request()->routeIs('menu') ? 'text-blue-600 bg-gray-200' : 'text-gray-600' }} p-3 text-sm font-medium bg-gray-100 rounded-md hover:text-blue-600 hover:bg-gray-200">
+                        <span class="material-icons">menu</span>
+                        <span class="ml-2 font-bold text-lg">Menu Items</span>
+                    </a>
+
+
                     <!-- Products Dropdown -->
                     <div x-data="{ open: false }" class="bg-gray-100 rounded-md">
                         <!-- Button to toggle dropdown -->

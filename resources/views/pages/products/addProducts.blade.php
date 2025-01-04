@@ -52,14 +52,14 @@
                         </div>
 
                         <div>
-                            <label for="price" class="block text-sm font-semibold text-gray-700 mb-2">Price ($)</label>
+                            <label for="price" class="block text-sm font-semibold text-gray-700 mb-2">Price (৳)</label>
                             <input type="number" id="price" name="price"
                                 class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="Enter price">
                         </div>
 
                         <div>
                             <label for="discount" class="block text-sm font-semibold text-gray-700 mb-2">Discount
-                                ($)</label>
+                                (%)</label>
                             <input type="number" id="discount" name="discount"
                                 class="w-full border border-gray-300 rounded-lg px-4 py-2"
                                 placeholder="Enter discount amount">
