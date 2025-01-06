@@ -21,21 +21,14 @@ class HomeController extends Controller
         return view('user.home', compact('categories','products', 'menus' ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function card(Request $request)
     {
-        //
+        $product = Product::find($request->id);
+
+        return view('user.cart', compact('product'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.

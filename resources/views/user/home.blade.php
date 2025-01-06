@@ -77,7 +77,7 @@
                     <p class="discounted">৳ {{ $product->price - ($product->price * $product->discount) / 100 }}</p>
                     <p class="original">৳ {{ $product->price }}</p>
                 </div>
-                <a href="/cart.html"><button class="order">অর্ডার করুন</button></a>
+                <a href="{{ route('user.card', $product->id) }}"><button class="order"> অর্ডার করুন </button></a>
             </div>
         @endforeach
 

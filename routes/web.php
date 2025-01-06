@@ -27,3 +27,6 @@ Route::get('/products/delete/{id}', [ProductController::class, 'destroy'])->name
 
 // user controller
 Route::get('/user', [HomeController::class, 'index'])->name('user.home');
+Route::get('/user/card/{id}', [HomeController::class, 'card'])->name('user.card');
+
+
