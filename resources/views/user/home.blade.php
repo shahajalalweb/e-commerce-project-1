@@ -67,16 +67,21 @@
         <a href="/page2.html"><button>See More</button></a>
     </div>
     <div class="products">
-
+        {{-- product details  --}}
         @foreach ($products as $product)
             <div class="box">
-                <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image">
-                <button class="discount">-{{ rtrim(rtrim($product->discount, '0'), '.') }}%</button>
-                <p class="product-name">{{ $product->name }}</p>
-                <div class="price">
-                    <p class="discounted">৳ {{ $product->price - ($product->price * $product->discount) / 100 }}</p>
-                    <p class="original">৳ {{ $product->price }}</p>
-                </div>
+                <a href="{{route("product.details", $product->id)}}">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image">
+                    <button class="discount">-{{ rtrim(rtrim($product->discount, '0'), '.') }}%</button>
+                    <a class="cart">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                    </a>
+                    <p class="product-name">{{ $product->name }}</p>
+                    <div class="price">
+                        <p class="discounted">৳ {{ $product->price - ($product->price * $product->discount) / 100 }}</p>
+                        <p class="original">৳ {{ $product->price }}</p>
+                    </div>
+                </a>
                 <a href="{{ route('user.card', $product->id) }}"><button class="order"> অর্ডার করুন </button></a>
             </div>
         @endforeach

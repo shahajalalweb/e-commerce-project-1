@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-mart BD - Cart</title>
     <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+
 <body>
 
     <nav>
-        <a href="/index.html"><img src="https://emartbd24.com/uploads/80f10d72-978f-4fc7-98f8-cc6d761bb4a5/64170d5ebfcbe.png" alt="brand-logo"></a>
+        <a href="/index.html"><img
+                src="https://emartbd24.com/uploads/80f10d72-978f-4fc7-98f8-cc6d761bb4a5/64170d5ebfcbe.png"
+                alt="brand-logo"></a>
         <div class="searchbar">
             <input type="text" placeholder="Search Products...">
             <span class="material-symbols-outlined">
@@ -46,17 +51,18 @@
 
         <!-- Cart Item List -->
         <div class="cart-item">
-            @if ($product) {{-- Ensure $product is not null --}}
+            @if ($product)
+                {{-- Ensure $product is not null --}}
                 <img src="{{ asset('storage/' . $product->image) }}" alt="Item Image">
                 <div class="item-details">
                     <h3>{{ $product->name }}</h3>
-                    <p>Price: ${{ $product->price }}</p>
+                    <p>Price: ৳{{ $product->price }}</p>
                     <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" value="1" min="1" max="10">
+                    <input type="number" id="quantity" value="1" min="1" max="{{ $product->quantity }}">
                 </div>
                 <div class="item-price">
-                    ${{ $product->price }}
-                    <span class="material-symbols-outlined">delete</span>
+                    ৳{{ $product->price }}
+                    <a class="material-symbols-outlined">delete</a>
                 </div>
             @else
                 <p>No product found.</p>
@@ -78,17 +84,22 @@
 
         <!-- Total Price -->
         <div class="cart-summary">
-            <p>Sub-total: <span class="sub-total-price">$145.00</span></p>
-            <p>Delivery Charge: <span class="delivery-charge">(Will be added)</span></p>
-            <p>Total Discount: <span class="total-discount">$00.00</span></p>
-            <p>Total: <span class="total-price">$145.00</span></p>
+            @if ($product)
+                {{-- Ensure $product is not null --}}
+                <p>Sub-total: <span class="sub-total-price">৳{{ $product->price}}</span></p>
+                <p>Delivery Charge: <span class="delivery-charge">(Will be added)</span></p>
+                <p>Total Discount: <span class="total-discount">৳{{ ($product->price * $product->discount) / 100 }}</span></p>
+                <p>Total: <span class="total-price">৳{{ $product->price - ($product->price * $product->discount) / 100}}</span></p>
+            @endif
+
         </div>
         <!-- Continue Shopping-Checkout btn -->
         <div class="last-button">
-            <a href="/index.html"><button class="shopping-btn">Continue Shopping</button></a>
+            <a href="{{ route('user.home')}}"><button class="shopping-btn">Continue Shopping</button></a>
             <a href="/checkout.html"><button class="checkout-btn">Proceed to Checkout</button></a>
         </div>
     </div>
 
 </body>
+
 </html>
