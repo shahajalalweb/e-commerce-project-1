@@ -57,15 +57,37 @@
                     <p style="margin-bottom: 20px;
                     margin-left: 5px;
                     ">
-                        <del>৳{{ rtrim(rtrim($product->price, '0'), '.') }}</del></p>
+                        <del>৳{{ rtrim(rtrim($product->price, '0'), '.') }}</del>
+                    </p>
                 </div>
-                <p class="product-description">{{$product->description}}</p>
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" value="1" min="1" max="{{ $product->quantity }}">
+                <form action="{{ route('add.cart') }}" method="POST">
+                    @csrf <!-- Include CSRF token for security -->
 
-                <div class="add-to-cart">
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
+                    <p class="product-description">{{ $product->description }}</p>
+
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1"
+                        max="{{ $product->quantity }}">
+
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                    <div class="add-to-cart">
+                        @if (session('success'))
+                            <p class="alert-success" style="color: green; margin-bottom:20px;">
+                                {{ session('success') }}</p>
+                                <a href="{{ route('user.home')}}" class="add-to-cart-btn" style="margin-top: 10px; text-decoration:none;">Go to Shop</a>
+                                <a href="{{ route('user.home')}}" class="add-to-cart-btn" style="margin-top: 10px; text-decoration:none;">Proceed to Checkout</a>
+                        @elseif (!empty($existingProduct))
+                            <p style="color: green; margin-bottom:20px;">Already added to cart </p>
+                            <a href="{{ route('user.home')}}" class="add-to-cart-btn" style="margin-top: 10px; text-decoration:none;">Go to Shop</a>
+                            <a href="#" class="add-to-cart-btn" style="margin-top: 10px; text-decoration:none;">Proceed to Checkout</a>
+                        @else
+                            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                        @endif
+
+                    </div>
+                </form>
+
             </div>
         </div>
 
@@ -73,12 +95,12 @@
         <h3 style="margin-top: 30px;">Related Products</h3>
         <div class="related-products">
             @foreach ($products->take(3) as $product)
-            <div class="related-product-item">
-                <img src="{{ asset('storage/' . $product->image) }}" alt="Related Product">
-                <h4>{{ $product->name }}</h4>
-                <p>৳{{ $product->price}}</p>
-                <a href="/product_details.html" class="view-details-btn">View Details</a>
-            </div>
+                <div class="related-product-item">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="Related Product">
+                    <h4>{{ $product->name }}</h4>
+                    <p>৳{{ $product->price }}</p>
+                    <a href="{{route("product.details", $product->id)}}" class="view-details-btn">View Details</a>
+                </div>
             @endforeach
 
         </div>

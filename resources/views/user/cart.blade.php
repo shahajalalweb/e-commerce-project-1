@@ -47,7 +47,7 @@
     </nav>
 
     <div class="cart-container">
-        <h1>Your Shopping Cart</h1>
+        <h1>Your Shopping</h1>
 
         <!-- Cart Item List -->
         <div class="cart-item">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="item-price">
                     ৳{{ $product->price }}
-                    <a class="material-symbols-outlined">delete</a>
+                    {{-- <a class="material-symbols-outlined">delete</a> --}}
                 </div>
             @else
                 <p>No product found.</p>
@@ -96,7 +96,7 @@
         <!-- Continue Shopping-Checkout btn -->
         <div class="last-button">
             <a href="{{ route('user.home')}}"><button class="shopping-btn">Continue Shopping</button></a>
-            <a href="/checkout.html"><button class="checkout-btn">Proceed to Checkout</button></a>
+            <a href="{{ route('checkout', $product->id)}}"><button class="checkout-btn">Proceed to Checkout</button></a>
         </div>
     </div>
 

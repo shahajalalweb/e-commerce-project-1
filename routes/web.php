@@ -30,5 +30,11 @@ Route::get('/user', [HomeController::class, 'index'])->name('user.home');
 Route::get('/user/card/{id}', [HomeController::class, 'card'])->name('user.card');
 Route::get('/user/product/details', [HomeController::class, 'details'])->name('user.details');
 Route::get('/user/product/details/{id}', [HomeController::class, 'detailsProduct'])->name('product.details');
+Route::post('/user/add/cart', [HomeController::class, 'addToCart'])->name('add.cart');
+Route::get('/user/checkout/{id}', [HomeController::class, 'checkout'])->name('checkout');
+
+
+// check only cart
+Route::get('/user/cart/check', [HomeController::class, 'CheckCart'])->name('check.cart');
 
 

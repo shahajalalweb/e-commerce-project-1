@@ -43,39 +43,77 @@ class HomeController extends Controller
         $products = Product::with('category')
             ->where('id', '!=', $product->id) // Exclude the current product by ID
             ->get();
-        return view('user.details', compact('product', 'products'));
+
+        // Retrieve cart from session, or initialize empty cart
+        $cart = session()->get('cart', []);
+
+        // Check if product already exists in the cart
+        $existingProduct = collect($cart)->firstWhere('product_id', $request->id);
+
+        return view('user.details', compact('product', 'products' , 'existingProduct'));
+
     }
 
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function addToCart(Request $request)
     {
-        //
+        // Validate form data
+        $request->validate([
+            'product_id' => 'required|integer',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        // Extract data from request
+        $productId = $request->input('product_id');
+        $quantity = $request->input('quantity');
+        $product = ['product_id' => $productId, 'quantity' => $quantity];
+
+        // Retrieve cart from session, or initialize empty cart
+        $cart = session()->get('cart', []);
+
+        // Check if product already exists in the cart
+        $existingProduct = collect($cart)->firstWhere('product_id', $productId);
+
+        if ($existingProduct) {
+            // Product already in cart, update or just show flash message
+            session()->flash('success', 'Product already in your cart.');
+        } else {
+            // Add product to cart and store in session
+            session()->push('cart', $product);
+            session()->flash('success', 'Product added to cart.');
+        }
+
+        // Redirect back with the session data
+        return redirect()->back();
+        // return response()->json($cart);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+
+    function CheckCart(Request $request)
     {
-        //
+
+        // session()->flush();
+
+        // Retrieve the cart from the session, defaulting to an empty array if not set
+        $cart = session()->get('cart', []);
+
+        // Check if the cart is empty and handle it if needed
+        if (empty($cart)) {
+            // Optional: return a message or handle the case of an empty cart
+            return response()->json(['message' => 'Cart is empty']);
+        }
+
+        return response()->json($cart);
+
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function checkout($id)
     {
-        //
-    }
+        // Fetch product details by ID
+        $product = Product::findOrFail($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // Pass the product data to the checkout view
+        return view('user.checkout', compact('product'));
     }
 }
